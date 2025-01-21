@@ -9,6 +9,46 @@
   <body>
     <h1>Test SQL Queries</h1>
     <p>Run SQL queries on the Matches and GoalScorers datasets here.</p>
+
+    <!-- Form to trigger SQL query -->
+    <form method="POST" action="/execute-query">
+      <label for="query">Enter SQL Query:</label><br />
+      <textarea
+        id="query"
+        name="query"
+        rows="4"
+        cols="50"
+        placeholder="Write your SQL query here"
+      ></textarea
+      ><br />
+      <button type="submit" class="button">Run Query</button>
+    </form>
+
+    <!-- Area to display query results -->
+    {% if results %}
+    <h2>Query Results:</h2>
+    <table>
+      <thead>
+        <tr>
+          {% for col in results[0].keys() %}
+          <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in results %}
+        <tr>
+          {% for col in row.values() %}
+          <td>{{ col }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% elif error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
     <a href="/" class="button">Back to Home</a>
   </body>
 </html>

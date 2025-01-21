@@ -13,3 +13,5 @@ Remove All Containers: `docker stop $(docker ps -q)`
 
 Delete All Docker Images: `docker rmi $(docker images -q)`
 Remove all unused images: `docker image prune -a`
+
+Clean up unused volumes, networks, and dangling images, use: `docker system prune -a --volumes -f`
